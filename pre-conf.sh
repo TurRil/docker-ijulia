@@ -13,7 +13,7 @@ julia -e 'using Pkg ; Pkg.add("Conda") ; Pkg.build("Conda") ; '
 conda install --yes jupyter ipywidgets pandas matplotlib \
 scipy seaborn scikit-learn scikit-image sympy cython patsy statsmodels cloudpickle dill numba bokeh
 
-ln -s /opt/conda/pkgs/zeromq-4.0.*/lib/libzmq.so.4.* /opt/conda/lib/libzmq.so.4 
+ln -s /opt/conda/pkgs/zeromq-4.0.*/lib/libzmq.so.4.* /opt/conda/lib/libzmq.so.4
 ln -s /opt/conda/pkgs/libsodium-0.4.*/lib/libsodium.so.4.* /opt/conda/lib/libsodium.so.4
 
 # Ipopt
@@ -23,9 +23,9 @@ cd ThirdParty/Blas; ./get.Blas; ./configure --prefix=/usr/local --disable-shared
 cd ThirdParty/Lapack; ./get.Lapack; ./configure --prefix=/usr/local --disable-shared --with-pic; make install; cd ../..
 cd ThirdParty/Mumps; ./get.Mumps; cd ../..
 ./configure --prefix=/usr/local --enable-dependency-linking --with-blas=/usr/local/lib/libcoinblas.a --with-lapack=/usr/local/lib/libcoinlapack.a
-make install 
+make install
 echo "/usr/local/lib" > /etc/ld.so.conf.d/ipopt.conf; ldconfig
-cd ../.. 
+cd ../..
 rm -rf ipopt
 
 # Cbc
@@ -39,11 +39,12 @@ rm -rf cbc
 
 jupyter notebook --generate-config
 
-JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("IJulia");Pkg.add("Cairo"); Pkg.add("PyPlot"); Pkg.add("SIUnits"); Pkg.add("Gadfly"); Pkg.add("DataStructures"); Pkg.add("HDF5"); Pkg.add("Iterators"); Pkg.add("NumericExtensions"); Pkg.add("SymPy"); Pkg.add("Interact"); Pkg.add("Roots");'
-JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("DataFrames"); Pkg.add("RDatasets"); Pkg.add("Distributions"); Pkg.add("Clustering"); Pkg.add("GLM");'
-JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("Optim"); Pkg.add("JuMP"); Pkg.add("GLPKMathProgInterface"); Pkg.add("Clp"); Pkg.add("NLopt"); Pkg.add("Ipopt");'
-JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("Images"); Pkg.add("ImageView"); Pkg.add("WAV"); Pkg.add("ODE"); Pkg.add("Sundials"); Pkg.add("LinearLeastSquares");'
-JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("BayesNets"); Pkg.add("PGFPlots"); Pkg.add("Winston");'
+JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("IJulia"); Pkg.add("PyPlot"); Pkg.add("Plots"); Pkg.add("Gadfly"); Pkg.add("DataFrames");'
+# JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("IJulia");Pkg.add("Cairo"); Pkg.add("PyPlot"); Pkg.add("SIUnits"); Pkg.add("Gadfly"); Pkg.add("DataStructures"); Pkg.add("HDF5"); Pkg.add("Iterators"); Pkg.add("NumericExtensions"); Pkg.add("SymPy"); Pkg.add("Interact"); Pkg.add("Roots");'
+# JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("DataFrames"); Pkg.add("RDatasets"); Pkg.add("Distributions"); Pkg.add("Clustering"); Pkg.add("GLM");'
+# JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("Optim"); Pkg.add("JuMP"); Pkg.add("GLPKMathProgInterface"); Pkg.add("Clp"); Pkg.add("NLopt"); Pkg.add("Ipopt");'
+# JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("Images"); Pkg.add("ImageView"); Pkg.add("WAV"); Pkg.add("ODE"); Pkg.add("Sundials"); Pkg.add("LinearLeastSquares");'
+# JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.add("BayesNets"); Pkg.add("PGFPlots"); Pkg.add("Winston"); Pkg.add("PGFPlots");'
 # JUPYTER=$(which jupyter) julia -e 'using Pkg ; Pkg.update();'
 
 # adding iPython Clusters

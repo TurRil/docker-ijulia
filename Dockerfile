@@ -98,10 +98,10 @@ ENV SHELL /bin/bash
 # Show Julia where conda libraries are \
 RUN mkdir /etc/julia && \
     echo "push!(Libdl.DL_LOAD_PATH, \"$CONDA_DIR/lib\")" >> /etc/julia/juliarc.jl && \
-    mkdir $JULIA_PKGDIR 
+    mkdir $JULIA_PKGDIR
 
-##startup scripts  
-#Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
+##startup scripts
+#Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't
 #run it again ... use for conf for service ... when run the first time ...
 RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
@@ -112,7 +112,7 @@ RUN mkdir /etc/service/ijulia
 COPY ijulia.sh /etc/service/ijulia/run
 RUN chmod +x /etc/service/ijulia/run
 
-#pre-config scritp for different service that need to be run when container image is create 
+#pre-config scritp for different service that need to be run when container image is create
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
 COPY pre-conf.sh /sbin/pre-conf
 RUN chmod +x /sbin/pre-conf  ; sync \
@@ -120,13 +120,13 @@ RUN chmod +x /sbin/pre-conf  ; sync \
     && rm /sbin/pre-conf
 
 #add files and script that need to be use for this container
-#include conf file relate to service/daemon 
-#additionsl tools to be use internally 
+#include conf file relate to service/daemon
+#additionsl tools to be use internally
 COPY after_install.sh /sbin/after_install
 RUN chmod +x /sbin/after_install
 
 # to allow access from outside of the container  to the container service
-# at that ports need to allow access from firewall if need to access it outside of the server. 
+# at that ports need to allow access from firewall if need to access it outside of the server.
 EXPOSE 8998
 
 # Use baseimage-docker's init system.
